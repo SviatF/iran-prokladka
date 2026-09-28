@@ -1,5 +1,4 @@
-// Replace this value with the final Iranian YouTube channel URL.
-const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/";
+const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@melbet_iran_official";
 
 const cta = document.getElementById("youtubeCta");
 
