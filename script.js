@@ -23,34 +23,60 @@ if (cta) {
 function fitLandingToViewport() {
   if (!landing || !shell) return;
 
-  landing.style.transform = "scale(1)";
+  // Measure the complete unscaled landing first.
+  landing.style.transform = "none";
+  landing.style.marginTop = "0px";
 
-  const viewportWidth = window.innerWidth;
+  const viewportWidth = window.visualViewport?.width || window.innerWidth;
   const viewportHeight = window.visualViewport?.height || window.innerHeight;
-  const sidePadding = viewportWidth <= 640 ? 6 : 14;
-  const verticalPadding = viewportWidth <= 640 ? 6 : 10;
+  const isMobile = viewportWidth <= 640;
 
-  const naturalWidth = landing.offsetWidth;
-  const naturalHeight = landing.scrollHeight;
+  // Small safe area around the complete composition.
+  const sideGap = isMobile ? 4 : 10;
+  const topBottomGap = isMobile ? 4 : 8;
 
-  const widthScale = (viewportWidth - sidePadding * 2) / naturalWidth;
-  const heightScale = (viewportHeight - verticalPadding * 2) / naturalHeight;
+  const naturalWidth = Math.ceil(landing.getBoundingClientRect().width);
+  const naturalHeight = Math.ceil(landing.scrollHeight);
+
+  const availableWidth = Math.max(1, viewportWidth - sideGap * 2);
+  const availableHeight = Math.max(1, viewportHeight - topBottomGap * 2);
+
+  const widthScale = availableWidth / naturalWidth;
+  const heightScale = availableHeight / naturalHeight;
+
+  // IMPORTANT: do not force a minimum scale. The previous 0.5 floor
+  // could leave the bottom content/CTA outside the viewport.
   const scale = Math.min(1, widthScale, heightScale);
 
   landing.style.transformOrigin = "top center";
-  landing.style.transform = `scale(${Math.max(scale, 0.5)})`;
+  landing.style.transform = `scale(${scale})`;
+
+  // Center the fully scaled composition vertically when there is spare space.
+  const scaledHeight = naturalHeight * scale;
+  const freeSpace = Math.max(0, viewportHeight - scaledHeight);
+  landing.style.marginTop = `${Math.floor(freeSpace / 2)}px`;
+
+  shell.style.width = `${viewportWidth}px`;
   shell.style.height = `${viewportHeight}px`;
 }
 
-let resizeTimer;
+let resizeFrame;
 function queueFit() {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(fitLandingToViewport, 30);
+  cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => {
+    requestAnimationFrame(fitLandingToViewport);
+  });
 }
 
-window.addEventListener("load", fitLandingToViewport);
+window.addEventListener("load", queueFit);
 window.addEventListener("resize", queueFit);
 window.addEventListener("orientationchange", queueFit);
 window.visualViewport?.addEventListener("resize", queueFit);
+window.visualViewport?.addEventListener("scroll", queueFit);
 
-document.fonts?.ready.then(fitLandingToViewport).catch(() => {});
+document.fonts?.ready.then(queueFit).catch(() => {});
+
+// Images can change the natural page height after first paint.
+document.querySelectorAll("img").forEach((img) => {
+  if (!img.complete) img.addEventListener("load", queueFit, { once: true });
+});
