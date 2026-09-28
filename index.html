@@ -27,15 +27,7 @@
     <main class="landing" aria-labelledby="main-title">
       <header class="brand-block">
         <div class="brand-ring" aria-label="90+ ایران">
-          <img
-            src="logo_iran.webp"
-            alt="90+ ایران"
-            width="172"
-            height="172"
-            decoding="async"
-            fetchpriority="high"
-            style="display:block;width:100%;height:100%;object-fit:cover;border-radius:50%;"
-          />
+          <img src="logo_iran.webp" alt="90+ ایران" width="172" height="172" decoding="async" fetchpriority="high" />
         </div>
         <div class="brand-underline"></div>
       </header>
@@ -62,10 +54,29 @@
         </div>
       </section>
 
+      <section class="categories" aria-label="دسته‌بندی‌ها">
+        <article class="category-card">
+          <div class="category-icon football">⚽</div>
+          <h2>فوتبال</h2>
+          <small>لحظه‌های برتر</small>
+        </article>
+        <article class="category-card category-featured">
+          <div class="category-icon play-circle" aria-hidden="true"><span></span></div>
+          <h2>خلاصه‌ها</h2>
+          <small>ویدیوهای کوتاه</small>
+        </article>
+        <article class="category-card">
+          <div class="category-icon news-icon" aria-hidden="true"><span></span><span></span><span></span></div>
+          <h2>اخبار</h2>
+          <small>خبرهای روز</small>
+        </article>
+      </section>
+
       <section class="stats" aria-label="آمار کانال">
         <div class="stat-item">
           <span class="stat-symbol people">●●</span>
           <strong>۵۰٬۰۰۰+</strong>
+          <small class="stat-label">دنبال‌کننده</small>
         </div>
         <div class="stat-item rating">
           <span class="stat-symbol star">★</span>
@@ -74,28 +85,15 @@
         <div class="stat-item">
           <span class="calendar-icon" aria-hidden="true"></span>
           <strong>هر روز</strong>
+          <small class="stat-label">محتوای تازه</small>
         </div>
-      </section>
-
-      <section class="categories" aria-label="دسته‌بندی‌ها">
-        <article class="category-card">
-          <div class="category-icon football">⚽</div>
-          <h2>فوتبال</h2>
-        </article>
-        <article class="category-card">
-          <div class="category-icon play-circle" aria-hidden="true"><span></span></div>
-          <h2>خلاصه‌ها</h2>
-        </article>
-        <article class="category-card">
-          <div class="category-icon news-icon" aria-hidden="true"><span></span><span></span><span></span></div>
-          <h2>اخبار</h2>
-        </article>
       </section>
 
       <section class="content-card">
         <div class="stadium-inside" aria-hidden="true"></div>
         <div class="content-inner">
-          <h2>در کانال ما چه چیزی <span>منتظر شماست</span></h2>
+          <div class="content-kicker">90+ FOOTBALL</div>
+          <h2>در کانال ما <span>چه می‌بینید؟</span></h2>
           <ul>
             <li><b>✓</b><span>خبرهای روز فوتبال</span></li>
             <li><b>✓</b><span>گل‌ها و پاس گل‌ها</span></li>
@@ -105,11 +103,15 @@
             <li><b>✓</b><span>تحلیل و بررسی کارشناسی</span></li>
           </ul>
         </div>
+        <div class="content-play-watermark" aria-hidden="true"><span></span></div>
       </section>
 
-      <a id="youtubeCta" class="youtube-cta" href="https://www.youtube.com/@melbet_iran_official" target="_blank" rel="noopener noreferrer" aria-label="ورود به کانال یوتیوب">
+      <a id="youtubeCta" class="youtube-cta" href="https://www.youtube.com/@melbet_iran_official" target="_blank" rel="noopener noreferrer" aria-label="عضویت در کانال یوتیوب">
         <span class="yt-icon" aria-hidden="true"><span></span></span>
-        <strong>ورود به کانال یوتیوب</strong>
+        <span class="cta-copy">
+          <strong>عضویت در کانال یوتیوب</strong>
+          <small>ویدیوهای جدید فوتبال هر روز</small>
+        </span>
         <span class="arrow">←</span>
       </a>
     </main>
