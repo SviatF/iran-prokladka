@@ -4,3 +4,7 @@ _headers
 _redirects
 .gitignore
 .github/
+.git/
+.git/**
+.wrangler/
+.wrangler/**
