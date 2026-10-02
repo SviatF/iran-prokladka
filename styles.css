@@ -147,3 +147,11 @@ a{color:inherit;text-decoration:none}
   .content-card{min-height:284px;padding:20px 15px}.content-inner{width:83%}.content-card h2{font-size:19px}.content-card li{font-size:12px}.stadium-inside{width:40%}
   .youtube-cta{font-size:16px;min-height:58px}.yt-icon{width:40px;height:28px}.youtube-cta .arrow{font-size:22px}
 }
+
+
+/* Clickable Telegram category card */
+a.category-card{color:inherit;text-decoration:none;cursor:pointer}
+.telegram-card{border-color:rgba(44,165,224,.72)}
+.telegram-card:hover{border-color:rgba(44,165,224,1);box-shadow:0 0 28px rgba(44,165,224,.18)}
+.telegram-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#2AABEE;box-shadow:0 0 18px rgba(42,171,238,.28)}
+.telegram-icon svg{width:24px;height:24px;display:block;fill:#fff}
