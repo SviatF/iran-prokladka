@@ -1,6 +1,7 @@
 const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@melbet_iran_official";
 
 const cta = document.getElementById("youtubeCta");
+const telegramCard = document.getElementById("telegramCard");
 const landing = document.querySelector(".landing");
 const shell = document.querySelector(".page-shell");
 
@@ -16,6 +17,20 @@ if (cta) {
       });
     } catch (_) {
       // CTA navigation should never be blocked by analytics.
+    }
+  });
+}
+
+if (telegramCard) {
+  telegramCard.addEventListener("click", () => {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "telegram_channel_click",
+        destination: telegramCard.href,
+      });
+    } catch (_) {
+      // Telegram navigation should never be blocked by analytics.
     }
   });
 }
